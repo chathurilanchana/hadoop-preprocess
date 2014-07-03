@@ -18,11 +18,11 @@ public class CompositeKeyComparator extends WritableComparator
 	int compare = key1.getHost().compareTo(key2.getHost());
 	 
 	if (compare == 0) {
-	// only if we are in the same input group should we try and sort by value (datetime)
+	// only if we are in the same input group should we try and sort by value (group value specified by user)
 	if((key1.getGroupValue()==null)&& (key2.getGroupValue()==null)){
 		return 0;
 	}
-	return key1.getGroupValue().compareTo(key2.getGroupValue());
+	return key1.getGroupValue().toLowerCase().compareTo(key2.getGroupValue().toLowerCase());
 	}
 	 
 	return compare;
